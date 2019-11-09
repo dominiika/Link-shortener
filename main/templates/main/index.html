@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<br>
+<br>
+<div class="container">
+  <div class="jumbotron">
+    <h1 class="text-center">Shorten your URL</h1>
+    <form class="" method="POST" action="." style="text-align:center;">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button class="btn btn-primary" type="submit">Submit</button>
+    </form>
+    {% for link in links %}
+    {{ link.id }}
+    {% endfor %}
+    <br>
+    {% if url %}
+    <div class="new-link" style="text-align:center;">
+      <h2> Your shortened link is:</h2>
+      <p>{{ request.META.HTTP_HOST }}/{{ url }}</p>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+{% endblock %}
